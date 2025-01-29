@@ -1,0 +1,70 @@
+html {
+  height: 100%;
+  width: 100%;
+  background-color: lightgray;
+}
+strong {
+  color:red
+}
+text {
+  color:#DD571c;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+/* button {
+  background-color: lightgreen;
+  
+}
+button:hover {
+  background-color: #9fee0f;
+  transition: background-color 0.2s ease; 
+} */
+.disablers {
+  margin-left:10px
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: lightblue;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  position: relative; /* To position the close span */
+  border-radius: 18px;
+}
+.close {
+  color: gray;
+  position: absolute; /* Position relative to modal-content */
+  top: 10px; /* Adjust as needed */
+  right: 10px; /* Adjust as needed */
+  font-size: 28px;
+  font-weight: bold;
+  cursor:mouse
+}
+#customized {
+  width: 60%;
+  margin: 0 auto; /* Center the textarea */
+  display: block; /* Ensure it takes up full width */
+}
+#save {
+  display: block;
+  margin: 0 auto; /* Center the button */
+  margin-top:10px;
+  width: fit-content; /* Adjust width as needed */
+}
+#disableCustomize {
+  display: block;
+  margin: 0 auto; /* Center the button */
+  margin-top:10px;
+  width: fit-content; /* Adjust width as needed */
+}

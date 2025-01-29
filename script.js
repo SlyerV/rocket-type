@@ -5,7 +5,7 @@ const texts = ["rocket ships are incredible machines that allow humans to explor
 let sound=true
 const key = new Audio("key.mp3")
 const click = new Audio("click.mp3")
-key.volume=0.5
+key.volume=0.75
 function doClick() {
   if (sound) {
     click.load()

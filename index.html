@@ -46,11 +46,15 @@
   <br></br>
   <div id="customization" class="modal">
   <div class="modal-content">
-    <span onclick="closeCustomization()" class="close" id="closeCustomize">&times;</span>
+    <div class="modal-header">
+      <h2>Customization Menu</h2>
+      <span onclick="closeCustomization()" class="close" id="closeCustomize">&times;</span>
+    </div>
     <textarea id="customized" placeholder="Type your customized text here..."></textarea>
     <button id="save" onclick="saveCustomization()">Save</button>
     <button id="disableCustomize" onclick="disableCustomization()">Disable Customization</button>
   </div>
+  <!-- <div id="results" class="modal"></div> -->
   <script src="script.js"></script>
 </body>
 </html>

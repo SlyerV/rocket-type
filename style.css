@@ -24,7 +24,7 @@ h1 {
   border-top-right-radius: 54px;
   border-bottom-right-radius: 54px;
   width:50%;
-  animation-duration: 1.5s; /* Set the animation duration to 1 second */
+  animation-duration: 1s; /* Set the animation duration to 1 second */
   animation-fill-mode: forwards; /* Keep the animation's end state */
   animation-timing-function: ease-in-out; /* Smooth animation */
   animation-name: slideInRight; /* Apply animation to h1 */
@@ -62,11 +62,11 @@ address {
   border-top-right-radius: 54px;
   border-bottom-right-radius: 54px;
   width:30%;
-  animation-duration: 1.5s; /* Set the animation duration to 1 second */
+  animation-duration: 1s; /* Set the animation duration to 1 second */
   animation-fill-mode: forwards; /* Keep the animation's end state */
   animation-timing-function: ease-in-out; /* Smooth animation */
   animation-name: slideInRight; /* Apply animation to h1 */
-  animation-delay: 1.5s;
+  animation-delay: 1s;
   opacity:0;
 }
 

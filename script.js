@@ -6,6 +6,7 @@ let sound=true
 const key = new Audio("key.mp3")
 const click = new Audio("click.mp3")
 key.volume=0.75
+click.volume=2
 function doClick() {
   if (sound) {
     click.load()

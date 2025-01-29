@@ -3,6 +3,80 @@ html {
   width: 100%;
   background-color: lightgray;
 }
+/* General styles for all headings (<h1> and <h2>) */
+h1, h2 {
+  font-family: 'Arial', sans-serif; /* A modern, clean font */
+  color: #333; /* Dark gray text for readability */
+  margin-bottom: 15px; /* Space between heading and following content */
+  line-height: 1.2; /* Adjust line spacing for better readability */
+  text-transform: capitalize;
+}
+
+/* Specific styles for <h1> */
+h1 {
+  font-size: 2.5em; /* Large size for main titles */
+  font-weight: bold; /* Make it bold */
+  padding-bottom: 10px; /* Space between text and underline */
+  margin-top: 15px;
+  padding-left:20px;
+  padding-top:10px;
+  background-color: lightblue;
+  border-top-right-radius: 54px;
+  border-bottom-right-radius: 54px;
+  width:50%;
+  animation-duration: 1.5s; /* Set the animation duration to 1 second */
+  animation-fill-mode: forwards; /* Keep the animation's end state */
+  animation-timing-function: ease-in-out; /* Smooth animation */
+  animation-name: slideInRight; /* Apply animation to h1 */
+}
+
+/* Specific styles for <h2> */
+h2 {
+  font-size: 1.8em; /* Slightly smaller than <h1> */
+  font-weight: 600; /* Semi-bold */
+  padding-left: 10px; /* Space between text and left border */
+  margin-top: 20px;
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-100%); /* Start off-screen to the left */
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0); /* End at the normal position */
+  }
+}
+/* Styles for <address> */
+address {
+  font-style: italic; /* Italicize the address text */
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: #333; /* Lighter gray text for secondary information */
+  margin-top: -10px; /* Space above the address */
+  line-height: 1.5;
+  margin-bottom: -10px;
+  padding-left:20px;
+  padding-top:10px;
+  padding-bottom: 5px;
+  background-color: lightskyblue;
+  border-top-right-radius: 54px;
+  border-bottom-right-radius: 54px;
+  width:30%;
+  animation-duration: 1.5s; /* Set the animation duration to 1 second */
+  animation-fill-mode: forwards; /* Keep the animation's end state */
+  animation-timing-function: ease-in-out; /* Smooth animation */
+  animation-name: slideInRight; /* Apply animation to h1 */
+  animation-delay: 1.5s;
+  opacity:0;
+}
+
+/* Optional: Add a border to the address */
+address.bordered {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+}
 strong {
   color:red
 }
@@ -26,7 +100,7 @@ strong {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 button {
-  background-color: lightgreen; /* Default background color */
+  background-color: rgb(105, 234, 105); /* Default background color */
   color: white;
  /* Text color */
   padding: 10px 20px; /* Padding around the text */
@@ -37,10 +111,76 @@ button {
 font-size: 16px; /* Font size */
   transition: background-color 0.3s ease; /* Smooth transition for background color */
 }
+/* Base styles for the select element */
+select {
+  -webkit-appearance: none; /* Remove default browser styling (WebKit) */
+  -moz-appearance: none; /* Remove default browser styling (Firefox) */
+  appearance: none; /* Remove default browser styling (most modern browsers) */
+  background-color: #fff; /* White background */
+  border: 1px solid #ccc; /* Light gray border */
+  padding: 10px; /* Padding inside the select */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 16px; /* Font size */
+  cursor: pointer; /* Change cursor on hover */
+  width: 50%; /* Set select width to fit container */
+  max-width: 300px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Remove the default arrow */
+select::-ms-expand {
+  display: none;
+}
+
+/* Add a custom arrow */
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23666' d='M1.41 0.59L6 5.17l4.59-4.58L12 2l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E"); /* Replace with an SVG arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 6px;
+}
+
+/* Hover style */
+select:hover {
+  border-color: #999; /* Darker gray border on hover */
+}
+
+/* Focus style */
+select:focus {
+  border-color: lightgreen; /* Blue border on focus */
+  outline: none; /* Remove the default focus outline */
+  box-shadow: 0 0 5px rgba(0, 255, 94, 0.5); /* Add a subtle blue shadow */
+}
+
+/* Disabled style */
+select:disabled {
+  background-color: #f5f5f5; /* Light gray background */
+  border-color: #ddd; /* Light gray border */
+  color: #999; /* Light gray text */
+  cursor: not-allowed; /* Change cursor to "not-allowed" */
+}
+
+/* Option styles */
+option {
+  padding: 10px; /* Padding inside options */
+  font-size: 16px; /* Font size */
+}
+
+/* Option hover style */
+option:hover {
+  background-color: lightgreen; /* Light gray background on hover */
+}
+
+/* Option selected style */
+option:checked {
+  background-color: #c0c0c0;
+}
+
+
 
 /* Hover state */
 button:hover {
-  background-color: #008000; /* Darker green on hover */
+  background-color: rgb(81, 197, 81); /* Darker green on hover */
 }
 
 /* Disabled state */
@@ -51,7 +191,7 @@ button:disabled {
 }
 /* Base style for the textarea */
 textarea {
-  width: 100%; /* Make the textarea take up the full width of its container */
+  width: 95%; /* Make the textarea take up the full width of its container */
   padding: 10px; /* Padding inside the textarea */
   border: 1px solid #ccc; /* Light gray border */
   border-radius: 4px; /* Rounded corners */
@@ -149,5 +289,8 @@ textarea::placeholder {
   width: fit-content; /* Adjust width as needed */
 }
 #cancel {
-  background-color: #FFCCCB;
+  background-color: rgb(248, 136, 136);
+}
+#cancel:hover {
+  background-color: rgb(222, 95, 95)
 }

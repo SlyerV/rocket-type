@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Rocket Type</title>
-  </head>
-  <body>
-    <h1>This is a Heading</h1>
-    <input type="text" id="inp" name="Start the Engine!" placeholder="The quick brown fox jumps over the little dog"><br><br>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" type="image/x-icon" href="favicon.png">
+</head>
+
+<body>
+  <h1>Rocket Type 🚀</h1>
+  <label class="cTimeLeft">Time Left:</label>
+  <strong class="cTimeLeft" id="timeleft">0</strong>
+  <button class="disablers" id="disableTimeLeft" onclick="changeTimeLeft()">Disable Counter</button>
+  <br></br>
+  <label class="cErrors">Errors:</label>
+  <strong class="cErrors" id="errors">0</strong>
+  <button class="disablers" id="disableErrors" onclick="changeErrors()">Disable Counter</button>
+  <br></br>
+  <label class="cWPM">Current WPM:</label>
+  <strong class="cWPM" id="wpm">0</strong>
+  <button class="disablers" id="disableWPM" onclick="changeWPM()">Disable Counter</button>
+  <br></br>
+  <text id="type">Sample Text</text>
+  <br></br>
+  <textarea placeholder="Type here...", id="field", disabled, rows=5, cols=100></textarea>
+  <br></br>
+  Time: <select id="time">
+    <option value=15>15 Seconds</option>
+    <option value=30>30 Seconds</option>
+    <option value=60>60 Seconds</option>
+    <option value=120>120 Seconds</option>
+  Time</select>
+  <br></br>
+  <button type="button", id="start", onclick="starttest()">Start Test ⌨️</button>
+  <br></br>
+  <button type="button", id="customize", onclick="openCustomization()">Customize Text 🛠️</button>
+  <br></br>
+  <button type="button", id="cancel", onclick="cancelTest()", hidden>Cancel Test ❌</button>
+  <br></br>
+  <div id="customization" class="modal">
+  <div class="modal-content">
+    <span onclick="closeCustomization()" class="close" id="closeCustomize">&times;</span>
+    <textarea id="customized" placeholder="Type your customized text here..."></textarea>
+    <button id="save" onclick="saveCustomization()">Save</button>
+    <button id="disableCustomize" onclick="disableCustomization()">Disable Customization</button>
+  </div>
+  <script src="script.js"></script>
+</body>
 </html>

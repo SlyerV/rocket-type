@@ -226,8 +226,11 @@ textarea::placeholder {
   color: #aaa; /* Light gray placeholder text */
   font-style: italic; /* Italic placeholder text */
 }
-.disablers {
+.disablers, .copy {
   margin-left:10px
+}
+.noanimation.h1, .noanimation.address {
+  animation: none !important;
 }
 .modal {
   display: none; /* Hidden by default */

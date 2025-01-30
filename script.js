@@ -69,25 +69,34 @@ function starttest() {
       if ((Date.now()-startTime>=(time*1000)) || (i==(text.length))) {
         i=i-s
         let wpm = (((i/5)*(60/((Date.now()-startTime)/1000)))*(i/(i+e))).toFixed(1)
-        if ((i!=(text.length)) && (document.getElementById('timeleft').innerHTML<0.02)) {
-          prompt("time up; your WPM is "+wpm+" with "+(i+e)+" characters typed and a "+((i/(i+e))*100).toFixed(2)+"% accuracy rate")
-        } else {
-          if (text.length<=1) {
-            wpm="Infinity"
-          }
-          prompt("you wrote all of the text! your WPM is "+wpm+" with "+(i+e)+" characters typed and a "+((i/(i+e))*100).toFixed(2)+"% accuracy rate")
+        let raw = (((i/5)*(60/((Date.now()-startTime)/1000)))).toFixed(1)
+        if (text.length<=1) {
+          wpm="Infinity"
+          raw="Infinity"
         }
-        clearInterval(starttyping)
-        document.getElementById('timeleft').innerHTML = 0
-        document.getElementById('errors').innerHTML = 0
-        document.getElementById('wpm').innerHTML = 0
-        document.getElementById('field').value=""
-        document.getElementById('field').setAttribute('disabled',true)
-        document.getElementById('time').removeAttribute('disabled')
-        document.getElementById('start').removeAttribute('disabled')
-        document.getElementById('customize').removeAttribute('disabled')
-        document.getElementById('cancel').setAttribute('hidden',true)
-        return
+        try {
+          sessionStorage.setItem("wpm",wpm)
+          sessionStorage.setItem("errors",e)
+          sessionStorage.setItem("raw",raw)
+          sessionStorage.setItem("chars",(i+e))
+          sessionStorage.setItem("accuracy",((i/(i+e))*100).toFixed(2)+"%")
+          clearInterval(starttyping)
+          document.getElementById('timeleft').innerHTML = 0
+          document.getElementById('errors').innerHTML = 0
+          document.getElementById('wpm').innerHTML = 0
+          document.getElementById('field').value=""
+          document.getElementById('field').setAttribute('disabled',true)
+          document.getElementById('time').removeAttribute('disabled')
+          document.getElementById('start').removeAttribute('disabled')
+          document.getElementById('customize').removeAttribute('disabled')
+          document.getElementById('cancel').setAttribute('hidden',true)
+          document.getElementById('title').classList.add('noanimation')
+          document.getElementById('subtitle').classList.add('noanimation')
+          window.location.href="../result"
+          return
+        } catch(err) {
+          alert(err)
+        }
       }
     }
     resp = document.getElementById('field').value

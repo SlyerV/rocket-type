@@ -39,12 +39,19 @@ let starttyping
 String.prototype.replaceAt = function(index, replacement) {
     return this.substring(0, index) + replacement + this.substring(index + replacement.length);
 }
+// Standard Deviation Percentage Function
+function getStandardDeviationPercentage(array) {
+  const n = array.length
+  const mean = array.reduce((a, b) => a + b) / n
+  return (Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n) / mean)*100
+}
 document.getElementById('field').setAttribute('disabled', true);
 // starttest func
 // ik my code is rlly messy but hey it works! (sorta)
 function starttest() {
   doClick()
   let text = ""
+  let wpms = []
   const time = document.getElementById("time").value
   if (!customized) {
     if (time == 15) {
@@ -81,6 +88,7 @@ function starttest() {
       document.getElementById('timeleft').innerHTML = (time-((Date.now()-startTime)/1000)).toFixed(3)
       document.getElementById('errors').innerHTML = e
       document.getElementById('wpm').innerHTML = ((((i-s)/5)*(60/((Date.now()-startTime)/1000)))*((i-s)/((i-s)+e))).toFixed(1)
+      wpms.push(parseInt(((((i-s)/5)*(60/((Date.now()-startTime)/1000))))))
       if ((Date.now()-startTime>=(time*1000)) || (i==(text.length))) {
         i=i-s
         let wpm = (((i/5)*(60/((Date.now()-startTime)/1000)))*(i/(i+e))).toFixed(1)
@@ -95,6 +103,7 @@ function starttest() {
           sessionStorage.setItem("raw",raw)
           sessionStorage.setItem("chars",(i+e))
           sessionStorage.setItem("accuracy",((i/(i+e))*100).toFixed(2)+"%")
+          sessionStorage.setItem("consistency",getStandardDeviationPercentage(wpms).toFixed(2)+"%")
           sessionStorage.setItem("customized",customized)
           sessionStorage.setItem("sound",sound)
           clearInterval(starttyping)

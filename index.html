@@ -47,7 +47,7 @@
   <br></br>
   <button type="button", id="customize", onclick="openCustomization()">Customize Text 🛠️</button>
   <br></br>
-  <button type="button", id="cancel", onclick="cancelTest()", hidden>Cancel Test ❌</button>
+  <button type="button", id="cancel", class="red", onclick="cancelTest()", hidden>Cancel Test ❌</button>
   <br></br>
   <div id="customization" class="modal">
   <div class="modal-content">
@@ -57,7 +57,7 @@
     </div>
     <textarea id="customized" placeholder="Type your customized text here..."></textarea>
     <button id="save" onclick="saveCustomization()">Save</button>
-    <button id="disableCustomize" onclick="disableCustomization()">Disable Customization</button>
+    <button id="disableCustomize" class="red" onclick="disableCustomization()">Disable Customization</button>
   </div>
   <!-- <div id="results" class="modal"></div> -->
   <!-- <script src="result/script.js"></script> -->

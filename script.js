@@ -42,17 +42,28 @@ let starttyping
 String.prototype.replaceAt = function(index, replacement) {
     return this.substring(0, index) + replacement + this.substring(index + replacement.length);
 }
-// Mode
+// Mean, Median, Mode Funcs
+function getMean(arr) {
+  return arr.reduce((a, b) => a + b) / arr.length
+}
+function getMedian(arr) {
+  arr.sort((a, b) => a - b);
+  const isEven = arr.length % 2 === 0;
+  if (isEven) {
+    const mid1 = arr[arr.length / 2 - 1];
+    const mid2 = arr[arr.length / 2];
+    return (mid1 + mid2) / 2;
+  } else {
+    return arr[Math.floor(arr.length / 2)];
+  }
+}
 function getMode(arr) {
-  var freq = {}
-  
+  let freq = {}
   for (item of arr) {
     freq[item] ? freq[item]++ : freq[item] = 1
   }  
-  
-  var compare = 0
-  var mode
-  
+  let compare = 0
+  let mode
   for (item in freq) {
     if (freq[item] > compare) {
       compare = freq[item]
@@ -82,7 +93,8 @@ document.getElementById('field').setAttribute('disabled', true);
 function starttest() {
   doClick()
   let text = ""
-  let wpms = []
+  let rawWPMs = []
+  let WPMs = []
   const time = document.getElementById("time").value
   if (!customized) {
     if (time == 15) {
@@ -119,7 +131,8 @@ function starttest() {
       document.getElementById('timeleft').innerHTML = (time-((Date.now()-startTime)/1000)).toFixed(3)
       document.getElementById('errors').innerHTML = e
       document.getElementById('wpm').innerHTML = ((((i-s)/5)*(60/((Date.now()-startTime)/1000)))*((i-s)/((i-s)+e))).toFixed(1)
-      wpms.push(parseInt(((((i-s)/5)*(60/((Date.now()-startTime)/1000))))))
+      rawWPMs.push(parseInt(((((i-s)/5)*(60/((Date.now()-startTime)/1000))))))
+      WPMs.push(((((i-s)/5)*(60/((Date.now()-startTime)/1000)))*((i-s)/((i-s)+e))))
       if ((Date.now()-startTime>=(time*1000)) || (i==(text.length))) {
         i=i-s
         let wpm = (((i/5)*(60/((Date.now()-startTime)/1000)))*(i/(i+e))).toFixed(1)
@@ -134,7 +147,10 @@ function starttest() {
           sessionStorage.setItem("raw",raw)
           sessionStorage.setItem("chars",(i+e))
           sessionStorage.setItem("accuracy",((i/(i+e))*100).toFixed(2)+"%")
-          sessionStorage.setItem("consistency",calculateConsistency(wpms).toFixed(2)+"%")
+          sessionStorage.setItem("mean",getMean(WPMs).toFixed(1))
+          sessionStorage.setItem("median",getMedian(WPMs).toFixed(1))
+          sessionStorage.setItem("mode",getMode(WPMs).toFixed(1))
+          sessionStorage.setItem("consistency",calculateConsistency(rawWPMs).toFixed(2)+"%")
           sessionStorage.setItem("customized",customized)
           sessionStorage.setItem("customText",document.getElementById("customized").value)
           sessionStorage.setItem("sound",sound)

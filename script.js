@@ -28,6 +28,9 @@ if (sessionStorage.getItem("customized")) {
   customized = sessionStorage.getItem("customized")
   if (customized == "true") {
     customized = true
+    if (sessionStorage.getItem("customText")) {
+      document.getElementById("customized").value=sessionStorage.getItem("customText")
+    }
   } else {
     customized = false
   }
@@ -133,6 +136,7 @@ function starttest() {
           sessionStorage.setItem("accuracy",((i/(i+e))*100).toFixed(2)+"%")
           sessionStorage.setItem("consistency",calculateConsistency(wpms).toFixed(2)+"%")
           sessionStorage.setItem("customized",customized)
+          sessionStorage.setItem("customText",document.getElementById("customized").value)
           sessionStorage.setItem("sound",sound)
           clearInterval(starttyping)
           document.getElementById('timeleft').innerHTML = 0

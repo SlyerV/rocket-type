@@ -161,7 +161,13 @@ function starttest() {
         startTime=Date.now()
       }
       for (x of resp) {
-        if (((text[i]==x)&&(text[i]!=" ")) || (c<i) || (((text[resp.length-1]==resp[resp.length-1])))) {
+        let newWord = false
+        for (let y = i; y<resp.length-1;y++) {
+          if (text[y]==" ") {
+            newWord=true
+          }
+        }
+        if (((text[i]==x)&&(text[i]!=" ")) || (c<i) || ((text[resp.length-1]==resp[resp.length-1])&&(!newWord))) {
           if (c>=i) {
             document.getElementById('type').innerHTML = text.replaceAt(i-1,"🚀")
             document.getElementById('field').value=text.slice(0,i+1)
@@ -196,7 +202,7 @@ function starttest() {
           }
           document.getElementById("field").style.color = "red"
           let spam = false
-          for (let y = i; y<resp.length;y++) {
+          for (let y = i; y<resp.length-15;y++) {
             if (text[y]==" ") {
               spam=true
             }

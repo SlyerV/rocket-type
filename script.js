@@ -39,11 +39,39 @@ let starttyping
 String.prototype.replaceAt = function(index, replacement) {
     return this.substring(0, index) + replacement + this.substring(index + replacement.length);
 }
-// Standard Deviation Percentage Function
-function getStandardDeviationPercentage(array) {
-  const n = array.length
-  const mean = array.reduce((a, b) => a + b) / n
-  return (Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n) / mean)*100
+// Mode
+function getMode(arr) {
+  var freq = {}
+  
+  for (item of arr) {
+    freq[item] ? freq[item]++ : freq[item] = 1
+  }  
+  
+  var compare = 0
+  var mode
+  
+  for (item in freq) {
+    if (freq[item] > compare) {
+      compare = freq[item]
+      mode = item
+    }
+  }
+  return parseInt(mode)
+}
+// Variance of raw wpm
+function calculateConsistency(array) {
+  // const n = array.length
+  // const mean = array.reduce((a, b) => a + b) / n
+  // const cov = (Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n) / mean)*100
+  // return cov
+  let c = 0
+  let f = getMode(array)
+  for (x of array) {
+    if ((x>(f-5))&&(x<(f+5))) {
+      c+=1
+    }
+  }
+  return (c/array.length)*100
 }
 document.getElementById('field').setAttribute('disabled', true);
 // starttest func
@@ -103,7 +131,7 @@ function starttest() {
           sessionStorage.setItem("raw",raw)
           sessionStorage.setItem("chars",(i+e))
           sessionStorage.setItem("accuracy",((i/(i+e))*100).toFixed(2)+"%")
-          sessionStorage.setItem("consistency",getStandardDeviationPercentage(wpms).toFixed(2)+"%")
+          sessionStorage.setItem("consistency",calculateConsistency(wpms).toFixed(2)+"%")
           sessionStorage.setItem("customized",customized)
           sessionStorage.setItem("sound",sound)
           clearInterval(starttyping)

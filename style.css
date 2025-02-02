@@ -300,12 +300,17 @@ textarea::placeholder {
 .red:hover {
   background-color: rgb(222, 95, 95)
 }
-/* .red {
-  background-color: rgb(109, 142, 218);
+.blue {
+  background-color: #6CB4EE;
 }
-.red:hover {
-  background-color: rgb(95, 154, 222)
-} */
+.blue:hover {
+  background-color: #2a83c6
+}
+.blue:disabled {
+  background-color: #cccccc; /* Light gray background */
+  color: #666666; /* Darker gray text */
+  cursor: not-allowed; /* Change cursor to "not-allowed" */
+}
 #back {
   margin-top: 15px;
 }

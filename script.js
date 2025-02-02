@@ -73,7 +73,7 @@ function getMode(arr) {
   return parseInt(mode)
 }
 // Variance of raw wpm
-function calculateConsistency(array) {
+function calculateConsistency(array,range) {
   // const n = array.length
   // const mean = array.reduce((a, b) => a + b) / n
   // const cov = (Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n) / mean)*100
@@ -81,7 +81,7 @@ function calculateConsistency(array) {
   let c = 0
   let f = getMode(array)
   for (x of array) {
-    if ((x>(f-5))&&(x<(f+5))) {
+    if ((x>(f-range))&&(x<(f+range))) {
       c+=1
     }
   }
@@ -150,7 +150,7 @@ function starttest() {
           sessionStorage.setItem("mean",getMean(WPMs).toFixed(1))
           sessionStorage.setItem("median",getMedian(WPMs).toFixed(1))
           sessionStorage.setItem("mode",getMode(WPMs).toFixed(1))
-          sessionStorage.setItem("consistency",calculateConsistency(rawWPMs).toFixed(2)+"%")
+          sessionStorage.setItem("consistency",calculateConsistency(rawWPMs,5).toFixed(2)+"%")
           sessionStorage.setItem("customized",customized)
           sessionStorage.setItem("customText",document.getElementById("customized").value)
           sessionStorage.setItem("sound",sound)
@@ -241,6 +241,10 @@ function starttest() {
   }
   starttyping = setInterval(typing,0)
 }
+// Prevents pasting text
+document.getElementById("field").addEventListener('paste', (event) => {
+  event.preventDefault(); // Prevent the default paste action
+});
 function changeTimeLeft() {
   doClick()
   const cTimeLeft = document.getElementsByClassName("cTimeLeft")

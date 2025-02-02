@@ -174,6 +174,7 @@ function starttest() {
       }
     }
     resp = document.getElementById('field').value
+    let error = false
     if (oldResp!=resp) {
       doKey()
       if (!start) {
@@ -230,7 +231,10 @@ function starttest() {
           if (((x==" ")&&(resp[i-1]==" ")) || (spam)) {
             document.getElementById('field').value=resp.slice(0,resp.length-1)
           } else {
-            e+=1
+            if (!error) {
+              e+=1
+            }
+            error = true
           }
         }
         c+=1

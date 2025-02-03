@@ -323,3 +323,107 @@ textarea::placeholder {
 #dResults {
   display:flex
 }
+#iRange {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 125px;
+  height: 10px; /* Important: Height for vertical centering */
+  background: #ddd;
+  outline: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+/* Thumb (Slider Handle) */
+#iRange::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: -6px; /* Important: Adjust vertical centering */
+}
+
+#iRange::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: -6px; /* Important: Adjust vertical centering */
+}
+
+#iRange::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background: #007bff;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: -6px; /* Important: Adjust vertical centering */
+}
+
+/* Track (Slider Background) */
+#iRange::-webkit-slider-runnable-track {
+  height: 10px; /* Keep same as default height */
+  background: #ddd;
+  border-radius: 5px;
+}
+
+#iRange::-moz-range-track {
+  height: 10px; /* Keep same as default height */
+  background: #ddd;
+  border-radius: 5px;
+}
+
+#iRange::-ms-track {
+  height: 10px; /* Keep same as default height */
+  background: #ddd;
+  border-radius: 5px;
+}
+
+/* Label */
+#consLabel {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Hover Effect for Thumb */
+#iRange::-webkit-slider-thumb:hover {
+  background: #0056b3;
+}
+
+#iRange::-moz-range-thumb:hover {
+  background: #0056b3;
+}
+
+#iRange::-ms-thumb:hover {
+  background: #0056b3;
+}
+
+/* Active Effect for Thumb (While Dragging) */
+#iRange::-webkit-slider-thumb:active {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#iRange::-moz-range-thumb:active {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#iRange::-ms-thumb:active {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+
+

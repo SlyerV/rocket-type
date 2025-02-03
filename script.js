@@ -199,7 +199,7 @@ function starttest() {
           document.getElementById('cancel').setAttribute('hidden',true)
           document.getElementById('title').classList.add('noanimation')
           document.getElementById('subtitle').classList.add('noanimation')
-          if (window.location.href.includes("slyerv.github.io")) {
+          if (window.location.href.includes("rocket-type")) {
             window.location.href="/rocket-type/results"
           } else {
             window.location.href="/results"

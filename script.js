@@ -109,6 +109,16 @@ function starttest() {
   } else {
     text=document.getElementById("customized").value
   }
+  // Creates span elements for each letter
+  document.getElementById("text").replaceChildren()
+  let l = 0
+  for (x of text) {
+    let letter = document.createElement("span")
+    letter.id=String(l)
+    letter.innerHTML=x
+    document.getElementById("text").appendChild(letter)
+    l+=1
+  }
   let resp = ""
   let i = 0
   let c = 0
@@ -120,7 +130,7 @@ function starttest() {
   document.getElementById('time').setAttribute('disabled',true)
   document.getElementById('start').setAttribute('disabled',true)
   document.getElementById('customize').setAttribute('disabled',true)
-  document.getElementById('type').innerHTML = text
+  // document.getElementById('type').innerHTML = text
   document.getElementById('timeleft').innerHTML = time
   document.getElementById('errors').innerHTML = "0"
   document.getElementById('wpm').innerHTML = "0"
@@ -175,6 +185,7 @@ function starttest() {
     }
     resp = document.getElementById('field').value
     let error = false
+    let space = false
     if (oldResp!=resp) {
       doKey()
       if (!start) {
@@ -190,39 +201,62 @@ function starttest() {
         }
         if (((text[i]==x)&&(text[i]!=" ")) || (c<i) || ((text[resp.length-1]==resp[resp.length-1])&&(!newWord))) {
           if (c>=i) {
-            document.getElementById('type').innerHTML = text.replaceAt(i-1,"🚀")
+            // document.getElementById('type').innerHTML = text.replaceAt(i-1,"🚀")
             document.getElementById('field').value=text.slice(0,i+1)
-            document.getElementById("field").style.color = "green"
+            if (document.getElementById(`${i}`).style.color!="red") {
+              document.getElementById(`${resp.length-1}`).style.color = "green"
+              document.getElementById("field").style.color="green"
+            }
             i+=1
           }
         } else if ((oldResp.length<resp.length)) {
           if ((x==" ") && (resp[c-1]!=" ")) {
+            space = true
             oldi=i
             for (x of text.slice(oldi)) {
               if ((text[i]==" ")&&(text[i+1]!=" ")) {
                 i+=1
                 s+=1
                 break
+              } else {
+                document.getElementById(`${i}`).style.textDecoration = "underline"
+                document.getElementById(`${i}`).style.textDecorationColor = "red"
               }
               i+=1
               s+=1
             }
-          // if ((resp.slice(oldResp.length).includes(" "))) {
-          //   oldi=i
-          //   for (x of text.slice(i)) {
-          //     if ((text[i]==" ")&&(text[i+1]!=" ")) {
-          //       i+=1
-          //       s+=1
-          //       break
-          //     }
-          //     i+=1
-          //     s+=1
-          //   }
+            let u = i-2
+            for (x of text.slice(0,i-2)) {
+              if ((text[u]==" ")) {
+                break
+              }
+              document.getElementById(`${u}`).style.textDecoration = "underline"
+              document.getElementById(`${u}`).style.textDecorationColor = "red"
+              u--
+              if (u==0) {
+                document.getElementById(`${u}`).style.textDecoration = "underline"
+                document.getElementById(`${u}`).style.textDecorationColor = "red"
+              }
+            }
+            if (document.getElementById(`${c}`).style.color=="red") {
+              document.getElementById(`${c}`).style.color="#585351"
+            }
+            e+=1
+            document.getElementById("field").style.color="red"
             document.getElementById('field').value=text.slice(0,i)
-            document.getElementById('type').innerHTML = text.replaceAt(i-1,"🚀")
+            // document.getElementById('type').innerHTML = text.replaceAt(i-1,"🚀")
           }
-          document.getElementById("field").style.color = "red"
+          // document.getElementById(`${i}`).style.color = "red"
           let spam = false
+          // for (let y = i; y<resp.length;y++) {
+          //   if (text[y]==" ") {
+          //     for (let z = y; z<resp.length;z++) {
+          //       let e = document.createElement("span")
+          //       e.style.color="orange"
+          //       document.getElementById("text").insertBefore(e, document.getElementById(`${z+1}`))
+          //     }
+          //   }
+          // }
           for (let y = i; y<resp.length-15;y++) {
             if (text[y]==" ") {
               spam=true
@@ -231,8 +265,18 @@ function starttest() {
           if (((x==" ")&&(resp[i-1]==" ")) || (spam)) {
             document.getElementById('field').value=resp.slice(0,resp.length-1)
           } else {
-            if (!error) {
+            if ((!error) && (!space)) {
               e+=1
+              document.getElementById("field").style.color="red"
+              let newWord = false
+              for (let y = i; y<resp.length-1;y++) {
+                if (text[y]==" ") {
+                  newWord=true
+                }
+              }
+              if (!newWord) {
+                document.getElementById(`${resp.length-1}`).style.color = "red"
+              }
             }
             error = true
           }
@@ -325,6 +369,7 @@ function disableCustomization() {
   document.getElementById("customization").style.display="none"
   document.getElementById("customized").value=""
 }
+document.getElementById("customized").addEventListener("input",doKey)
 function cancelTest() {
   doClick()
   try {

@@ -199,7 +199,7 @@ function starttest() {
           document.getElementById('cancel').setAttribute('hidden',true)
           document.getElementById('title').classList.add('noanimation')
           document.getElementById('subtitle').classList.add('noanimation')
-          window.location.href="../results"
+          window.location.href="/results"
           return
         } catch(err) {
           alert(err)

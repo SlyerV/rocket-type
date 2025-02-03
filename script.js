@@ -102,7 +102,7 @@ function calculateConsistency(array,range) {
   let c = 0
   let f = getMode(array)
   for (x of array) {
-    if ((x>(f-range))&&(x<(f+range))) {
+    if ((x>=(f-range))&&(x<=(f+range))) {
       c+=1
     }
   }

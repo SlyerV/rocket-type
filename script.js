@@ -240,6 +240,7 @@ function starttest() {
             }
             if (document.getElementById(`${c}`).style.color=="red") {
               document.getElementById(`${c}`).style.color="#585351"
+              e-=1
             }
             e+=1
             document.getElementById("field").style.color="red"
